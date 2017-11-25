@@ -1,4 +1,6 @@
 defmodule Neuralchemist.Utils.EuclideanDistance do
+  alias Neuralchemist.Utils.Parser
+
   def calculate(p, q) do
     parse_arguments(p, q)
     |> Enum.zip()
@@ -7,10 +9,6 @@ defmodule Neuralchemist.Utils.EuclideanDistance do
   end
 
   defp parse_arguments(p, q) do
-    [parse(p), parse(q)]
+    [Parser.to_list(p), Parser.to_list(q)]
   end
-
-  defp parse(list) when is_list(list), do: list
-  defp parse(tuple) when is_tuple(tuple), do: Tuple.to_list(tuple)
-  defp parse(number) when is_number(number), do: [number]
 end
