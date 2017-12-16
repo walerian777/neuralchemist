@@ -18,6 +18,8 @@ defmodule Neuralchemist.Mixfile do
   end
 
   defp deps do
-    []
+    [
+      {:distancia, "~> 0.1.2"}
+    ]
   end
 end
