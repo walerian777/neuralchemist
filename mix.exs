@@ -12,13 +12,12 @@ defmodule Neuralchemist.Mixfile do
   end
 
   def application do
-    [
-      extra_applications: [:logger]
-    ]
+    []
   end
 
   defp deps do
     [
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:distancia, "~> 0.1.2"}
     ]
   end
