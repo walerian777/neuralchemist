@@ -18,7 +18,8 @@ defmodule Neuralchemist.Mixfile do
   defp deps do
     [
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
-      {:distancia, "~> 0.1.2"}
+      {:distancia, "~> 0.1.2"},
+      {:ex_doc, "~> 0.18", only: :dev, runtime: false}
     ]
   end
 end
