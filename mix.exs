@@ -29,6 +29,7 @@ defmodule Neuralchemist.Mixfile do
 
   defp description do
     """
+    Neuralchemist is a library for machine learning stuff.
     """
   end
 
