@@ -7,8 +7,15 @@ defmodule Neuralchemist.NearestNeighbours do
 
   def predict(training_data, test_data, params \\ %{}) do
     params = Map.merge(@default_params, params)
+    training_data
+    |> sort_by_distance(test_data, params)
+    |> Enum.take(Map.get(params, :k_neighbours))
+    |> elem(0)
+  end
+
+  defp sort_by_distance(training_data, test_data, %{ distance: distance }) do
     Enum.map(training_data, fn(label, values) ->
-      {label, distance(values, elem(test_data, 1), Map.get(params, :distance))}
+      {label, distance(values, elem(test_data, 1), distance)}
     end)
   end
 
