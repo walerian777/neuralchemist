@@ -9,8 +9,9 @@ defmodule Neuralchemist.NearestNeighbours do
     params = Map.merge(@default_params, params)
     training_data
     |> map_to_distance(test_data, params)
+    |> Enum.sort_by(&elem(&1, 1))
     |> Enum.take(Map.get(params, :k_neighbours))
-    |> IO.inspect
+    |> take_mode()
     |> elem(0)
   end
 
@@ -25,4 +26,6 @@ defmodule Neuralchemist.NearestNeighbours do
   defp distance(p, q, metric) do
     apply(Distancia, metric, [p, q])
   end
+
+  defp take_mode([h | _]), do: h
 end
