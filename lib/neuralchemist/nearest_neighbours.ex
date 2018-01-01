@@ -32,5 +32,9 @@ defmodule Neuralchemist.NearestNeighbours do
     apply(Distancia, metric, [p, q])
   end
 
-  defp take_mode([h | _]), do: h
+  defp take_mode(list) do
+    list
+    |> Enum.reduce(%{}, fn({label, _}, acc) -> Map.update(acc, label, 1, &(&1 + 1)) end)
+    |> Enum.max_by(&elem(&1, 1))
+  end
 end
