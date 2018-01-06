@@ -3,6 +3,15 @@ defmodule Neuralchemist.NearestNeighboursTest do
 
   alias Neuralchemist.NearestNeighbours
 
+  @doc """
+  Features are weight (in grams) and color (represented by an integer):
+  red    1
+  orange 2
+  yellow 3
+  green  4
+  blue   5
+  purple 6
+  """
   @training_data [
     {"banana", {303, 3}},
     {"apple",  {370, 1}},
@@ -26,5 +35,15 @@ defmodule Neuralchemist.NearestNeighboursTest do
   test "predict returns a proper label" do
     {label, test_data} = List.last(@training_data)
     assert NearestNeighbours.predict(@training_data, test_data) == label
+  end
+
+  test "predict returns a banana" do
+    banana_features = {300, 4}
+    assert NearestNeighbours.predict(@training_data, banana_features) == "banana"
+  end
+
+  test "predict returns an apple" do
+    banana_features = {360, 1}
+    assert NearestNeighbours.predict(@training_data, banana_features) == "apple"
   end
 end
