@@ -34,7 +34,11 @@ defmodule Neuralchemist.NearestNeighbours do
 
   defp take_mode(list) do
     list
-    |> Enum.reduce(%{}, fn({label, _}, acc) -> Map.update(acc, label, 1, &(&1 + 1)) end)
+    |> Enum.reduce(%{}, &heatmap/2)
     |> Enum.max_by(&elem(&1, 1))
+  end
+
+  defp heatmap({label, _}, acc) do
+    Map.update(acc, label, 1, &(&1 + 1))
   end
 end
