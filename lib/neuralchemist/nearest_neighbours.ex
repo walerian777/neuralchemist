@@ -9,6 +9,9 @@ defmodule Neuralchemist.NearestNeighbours do
     distance: :euclidean
   }
 
+  @doc """
+  Predicts the label of the `test_data` based on given `training_data`.
+  """
   def predict(training_data, test_data, params \\ %{}) do
     params = Map.merge(@default_params, params)
     k_neighbours = Map.get(params, :k_neighbours)
